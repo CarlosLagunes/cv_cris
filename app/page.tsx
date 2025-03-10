@@ -6,21 +6,17 @@ import { useEffect, useRef } from "react";
 export default function Home() {
   const magazineRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+   useEffect(() => {
     const loadScripts = async () => {
-      if (!(window as any).jQuery) {
-        // ✅ Cargar jQuery 1.7.1
-        const scriptJQuery = document.createElement("script");
-        scriptJQuery.src = "http://code.jquery.com/jquery-1.7.1.min.js"; // ✅ Versión exacta
-        scriptJQuery.async = true;
-        scriptJQuery.onload = () => {
-          console.log("✅ jQuery 1.7.1 cargado");
-          loadTurnJS();
-        };
-        document.body.appendChild(scriptJQuery);
-      } else {
+      // ✅ Cargar jQuery 3.7.1 desde CDN
+      const scriptJQuery = document.createElement("script");
+      scriptJQuery.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js";
+      scriptJQuery.async = true;
+      scriptJQuery.onload = () => {
+        console.log("✅ jQuery 3.7.1 cargado desde CDN");
         loadTurnJS();
-      }
+      };
+      document.body.appendChild(scriptJQuery);
     };
 
     const loadTurnJS = () => {
